@@ -8,7 +8,7 @@ Organizations:
     - &OrdererOrg
         Name: OrdererOrg
         ID: OrdererMSP
-        MSPDir: crypto-config/ordererOrganizations/example.com/msp
+        MSPDir: crypto-config/ordererOrganizations/coffeechain.com/msp
         Policies:
             Readers:
                 Type: Signature
@@ -20,65 +20,65 @@ Organizations:
                 Type: Signature
                 Rule: "OR('OrdererMSP.admin')"
 
-    - &Producer
-        Name: ProducerMSP
-        ID: ProducerMSP
-        MSPDir: crypto-config/peerOrganizations/producer.example.com/msp
+    - &Cooperative
+        Name: CooperativeMSP
+        ID: CooperativeMSP
+        MSPDir: crypto-config/peerOrganizations/cooperative.coffeechain.com/msp
         Policies:
             Readers:
                 Type: Signature
-                Rule: "OR('ProducerMSP.admin', 'ProducerMSP.peer', 'ProducerMSP.client')"
+                Rule: "OR('CooperativeMSP.admin', 'CooperativeMSP.peer', 'CooperativeMSP.client')"
             Writers:
                 Type: Signature
-                Rule: "OR('ProducerMSP.admin', 'ProducerMSP.client')"
+                Rule: "OR('CooperativeMSP.admin', 'CooperativeMSP.client')"
             Admins:
                 Type: Signature
-                Rule: "OR('ProducerMSP.admin')"
+                Rule: "OR('CooperativeMSP.admin')"
 
-    - &Manufacturer
-        Name: ManufacturerMSP
-        ID: ManufacturerMSP
-        MSPDir: crypto-config/peerOrganizations/manufacturer.example.com/msp
+    - &Transporter
+        Name: TransporterMSP
+        ID: TransporterMSP
+        MSPDir: crypto-config/peerOrganizations/transporter.coffeechain.com/msp
         Policies:
             Readers:
                 Type: Signature
-                Rule: "OR('ManufacturerMSP.admin', 'ManufacturerMSP.peer', 'ManufacturerMSP.client')"
+                Rule: "OR('TransporterMSP.admin', 'TransporterMSP.peer', 'TransporterMSP.client')"
             Writers:
                 Type: Signature
-                Rule: "OR('ManufacturerMSP.admin', 'ManufacturerMSP.client')"
+                Rule: "OR('TransporterMSP.admin', 'TransporterMSP.client')"
             Admins:
                 Type: Signature
-                Rule: "OR('ManufacturerMSP.admin')"
+                Rule: "OR('TransporterMSP.admin')"
                 
-    - &Deliverer
-        Name: DelivererMSP
-        ID: DelivererMSP
-        MSPDir: crypto-config/peerOrganizations/deliverer.example.com/msp
+    - &Miller
+        Name: MillerMSP
+        ID: MillerMSP
+        MSPDir: crypto-config/peerOrganizations/miller.coffeechain.com/msp
         Policies:
             Readers:
                 Type: Signature
-                Rule: "OR('DelivererMSP.admin', 'DelivererMSP.peer', 'DelivererMSP.client')"
+                Rule: "OR('MillerMSP.admin', 'MillerMSP.peer', 'MillerMSP.client')"
             Writers:
                 Type: Signature
-                Rule: "OR('DelivererMSP.admin', 'DelivererMSP.client')"
+                Rule: "OR('MillerMSP.admin', 'MillerMSP.client')"
             Admins:
                 Type: Signature
-                Rule: "OR('DelivererMSP.admin')"
+                Rule: "OR('MillerMSP.admin')"
                 
-    - &Retailer
-        Name: RetailerMSP
-        ID: RetailerMSP
-        MSPDir: crypto-config/peerOrganizations/retailer.example.com/msp
+    - &Insurance
+        Name: InsuranceMSP
+        ID: InsuranceMSP
+        MSPDir: crypto-config/peerOrganizations/insurance.coffeechain.com/msp
         Policies:
             Readers:
                 Type: Signature
-                Rule: "OR('RetailerMSP.admin', 'RetailerMSP.peer', 'RetailerMSP.client')"
+                Rule: "OR('InsuranceMSP.admin', 'InsuranceMSP.peer', 'InsuranceMSP.client')"
             Writers:
                 Type: Signature
-                Rule: "OR('RetailerMSP.admin', 'RetailerMSP.client')"
+                Rule: "OR('InsuranceMSP.admin', 'InsuranceMSP.client')"
             Admins:
                 Type: Signature
-                Rule: "OR('RetailerMSP.admin')"
+                Rule: "OR('InsuranceMSP.admin')"
 
 Capabilities:
     Channel: &ChannelCapabilities
@@ -113,7 +113,7 @@ Application: &ApplicationDefaults
 Orderer: &OrdererDefaults
     OrdererType: solo
     Addresses:
-        - orderer.example.com:7050
+        - orderer.coffeechain.com:7050
     BatchTimeout: 2s
     BatchSize:
         MaxMessageCount: 10
@@ -167,20 +167,20 @@ Profiles:
         Consortiums:
             SampleConsortium:
                 Organizations:
-                    - *Producer
-                    - *Manufacturer
-                    - *Deliverer
-                    - *Retailer
+                    - *Cooperative
+                    - *Transporter
+                    - *Miller
+                    - *Insurance
     SupplyChannel:
         Consortium: SampleConsortium
         <<: *ChannelDefaults
         Application:
             <<: *ApplicationDefaults
             Organizations:
-                - *Producer
-                - *Manufacturer
-                - *Deliverer
-                - *Retailer
+                - *Cooperative
+                - *Transporter
+                - *Miller
+                - *Insurance
             Capabilities:
                 <<: *ApplicationCapabilities
 

@@ -1,34 +1,34 @@
 OrdererOrgs:
   - Name: Orderer
-    Domain: example.com
+    Domain: coffeechain.com
     EnableNodeOUs: true
     Specs:
       - Hostname: orderer
 
 PeerOrgs:
-  - Name: Producer
-    Domain: producer.example.com
+  - Name: Cooperative
+    Domain: cooperative.coffeechain.com
     EnableNodeOUs: true
     Template:
       Count: 1
     Users:
       Count: 1
-  - Name: Manufacturer
-    Domain: manufacturer.example.com
+  - Name: Transporter
+    Domain: transporter.coffeechain.com
     EnableNodeOUs: true
     Template:
       Count: 1
     Users:
       Count: 1
-  - Name: Deliverer
-    Domain: deliverer.example.com
+  - Name: Miller
+    Domain: miller.coffeechain.com
     EnableNodeOUs: true
     Template:
       Count: 1
     Users:
       Count: 1
-  - Name: Retailer
-    Domain: retailer.example.com
+  - Name: Insurance
+    Domain: insurance.coffeechain.com
     EnableNodeOUs: true
     Template:
       Count: 1

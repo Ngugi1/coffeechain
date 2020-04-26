@@ -5,14 +5,14 @@ echo "Creating containers... "
 docker-compose -f ./supply-network/docker-compose-cli.yaml up -d
 echo 
 echo "Containers started" 
-echo 
-docker ps
+# echo 
+# docker ps
 
 docker exec -it cli ./scripts/channel/createChannel.sh
 
-echo "Joining Deliverer to channel..."
-docker exec -it cli ./scripts/channel/join-peer.sh peer0 deliverer DelivererMSP 10051 1.0
-echo "Joining Manufacturer to channel..."
-docker exec -it cli ./scripts/channel/join-peer.sh peer0 manufacturer ManufacturerMSP 9051 1.0
-echo "Joining Retailer to channel..." 
-docker exec -it cli ./scripts/channel/join-peer.sh peer0 retailer RetailerMSP 11051 1.0
+echo "Joining Miller to channel..."
+docker exec -it cli ./scripts/channel/join-peer.sh peer0 miller MillerMSP 10051 1.0
+echo "Joining Transporter to channel..."
+docker exec -it cli ./scripts/channel/join-peer.sh peer0 transporter TransporterMSP 9051 1.0
+echo "Joining Insurance to channel..." 
+docker exec -it cli ./scripts/channel/join-peer.sh peer0 insurance InsuranceMSP 11051 1.0

@@ -1,0 +1,49 @@
+{
+    "name": "supply-chain-producer",
+    "version": "1.0.0",
+    "client": {
+        "organization": "insurance",
+        "connection": {
+            "timeout": {
+                "peer": {
+                    "endorser": "300"
+                }
+            }
+        }
+    },
+    "organizations": {
+        "insurance": {
+            "mspid": "InsuranceMSP",
+            "peers": [
+                "peer0.insurance.coffeechain.com"
+            ],
+            "certificateAuthorities": [
+                "ca.insurance.coffeechain.com"
+            ]
+        }
+    },
+    "peers": {
+        "peer0.insurance.coffeechain.com": {
+            "url": "grpcs://localhost:11051",
+            "tlsCACerts": {
+                "pem": "-----BEGIN CERTIFICATE-----\nMIICfTCCAiSgAwIBAgIRANRu2m/HKtHFDNyX9ByqCgYwCgYIKoZIzj0EAwIwgYgx\nCzAJBgNVBAYTAlVTMRMwEQYDVQQIEwpDYWxpZm9ybmlhMRYwFAYDVQQHEw1TYW4g\nRnJhbmNpc2NvMSIwIAYDVQQKExlpbnN1cmFuY2UuY29mZmVlY2hhaW4uY29tMSgw\nJgYDVQQDEx90bHNjYS5pbnN1cmFuY2UuY29mZmVlY2hhaW4uY29tMB4XDTIwMDQy\nNjIwMjkwMFoXDTMwMDQyNDIwMjkwMFowgYgxCzAJBgNVBAYTAlVTMRMwEQYDVQQI\nEwpDYWxpZm9ybmlhMRYwFAYDVQQHEw1TYW4gRnJhbmNpc2NvMSIwIAYDVQQKExlp\nbnN1cmFuY2UuY29mZmVlY2hhaW4uY29tMSgwJgYDVQQDEx90bHNjYS5pbnN1cmFu\nY2UuY29mZmVlY2hhaW4uY29tMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEGSCV\nD/RQi2RAPX64T8H6BRR8eY3zqqkPc9EnRar5BvUjKaBuNqsAnbSTJTAKLHOeMSeQ\nxdXcR5j4OFnWLly02KNtMGswDgYDVR0PAQH/BAQDAgGmMB0GA1UdJQQWMBQGCCsG\nAQUFBwMCBggrBgEFBQcDATAPBgNVHRMBAf8EBTADAQH/MCkGA1UdDgQiBCChnVC7\niuYyFlGxCdbj1/1Eu6eTHm2LURAAIda3Lu0xyzAKBggqhkjOPQQDAgNHADBEAiAo\nuSd/O8rM1sSS5k/0pFs6z/7SIqxsE+pFc621XgkEXQIgXJTpKUO59u+ZXqgrnTiL\ntS2kOTf7rdRzuv+WcYKbQsY=\n-----END CERTIFICATE-----\n"
+            },
+            "grpcOptions": {
+                "ssl-target-name-override": "peer0.insurance.coffeechain.com",
+                "hostnameOverride": "peer0.insurance.coffeechain.com"
+            }
+        }
+    },
+    "certificateAuthorities": {
+        "ca.insurance.coffeechain.com": {
+            "url": "https://localhost:10054",
+            "caName": "ca-insurance",
+            "tlsCACerts": {
+                "pem": "-----BEGIN CERTIFICATE-----\nMIICdjCCAh2gAwIBAgIQI9DVASFpu4csXnwVwIHWgjAKBggqhkjOPQQDAjCBhTEL\nMAkGA1UEBhMCVVMxEzARBgNVBAgTCkNhbGlmb3JuaWExFjAUBgNVBAcTDVNhbiBG\ncmFuY2lzY28xIjAgBgNVBAoTGWluc3VyYW5jZS5jb2ZmZWVjaGFpbi5jb20xJTAj\nBgNVBAMTHGNhLmluc3VyYW5jZS5jb2ZmZWVjaGFpbi5jb20wHhcNMjAwNDI2MjAy\nOTAwWhcNMzAwNDI0MjAyOTAwWjCBhTELMAkGA1UEBhMCVVMxEzARBgNVBAgTCkNh\nbGlmb3JuaWExFjAUBgNVBAcTDVNhbiBGcmFuY2lzY28xIjAgBgNVBAoTGWluc3Vy\nYW5jZS5jb2ZmZWVjaGFpbi5jb20xJTAjBgNVBAMTHGNhLmluc3VyYW5jZS5jb2Zm\nZWVjaGFpbi5jb20wWTATBgcqhkjOPQIBBggqhkjOPQMBBwNCAASrxdrVUr5AZEPe\nAfgr4my054Vw55UdTkvYFu/I/IiRTxy/aqQJ7eI8yM8LhAwQQhicz9YT5olTE2bZ\nFdwt7xTzo20wazAOBgNVHQ8BAf8EBAMCAaYwHQYDVR0lBBYwFAYIKwYBBQUHAwIG\nCCsGAQUFBwMBMA8GA1UdEwEB/wQFMAMBAf8wKQYDVR0OBCIEIDqb+AN87wM2xRiv\nsAcq33rDEamlQTrHRMng1GjOBPA+MAoGCCqGSM49BAMCA0cAMEQCIDr3fGukOK+J\nXeZGwdgEjuh4/caXP7vamR5FjTfkp4PoAiAsbAg4vLKfQh1XxgJ4zBW/NQcEE8gU\nVodGOPsPMOPRAA==\n-----END CERTIFICATE-----\n"
+            },
+            "httpOptions": {
+                "verify": false
+            }
+        }
+    }
+}

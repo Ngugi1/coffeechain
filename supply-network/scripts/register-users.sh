@@ -1,13 +1,13 @@
 #!/bin/bash
-node src/enrollAdmin.js producer
-node src/enrollAdmin.js manufacturer
-node src/enrollAdmin.js deliverer
-node src/enrollAdmin.js retailer
+node src/enrollAdmin.js cooperative
+node src/enrollAdmin.js transporter
+node src/enrollAdmin.js miller
+node src/enrollAdmin.js insurance
 
-node src/registerUser.js producer
-node src/registerUser.js manufacturer
-node src/registerUser.js deliverer
-node src/registerUser.js retailer
+node src/registerUser.js cooperative
+node src/registerUser.js transporter
+node src/registerUser.js miller
+node src/registerUser.js insurance
 
 echo "***********************************"
 echo "       Starting API server         "

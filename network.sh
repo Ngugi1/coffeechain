@@ -1,4 +1,6 @@
 #!/bin/bash
+# This is for use by sed
+export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
 if [ "$1" == "start" ]; then
     echo "***********************************"
     echo "       Generating artifacts        "

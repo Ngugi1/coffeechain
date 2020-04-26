@@ -12,7 +12,7 @@ app.use(bodyParser.urlencoded({
 app.post('/api/addTuna', async function (req, res) {
 
   try {
-    const contract = await fabricNetwork.connectNetwork('connection-producer.json', 'wallet/wallet-producer');
+    const contract = await fabricNetwork.connectNetwork('connection-cooperative.json', 'wallet/wallet-cooperative');
     let tuna = {
       id: req.body.id,
       latitude: req.body.latitude,
@@ -20,6 +20,8 @@ app.post('/api/addTuna', async function (req, res) {
       length: req.body.length,
       weight: req.body.weight
     }
+
+    console.log(tuna)
     let tx = await contract.submitTransaction('addAsset', JSON.stringify(tuna));
     res.json({
       status: 'OK - Transaction has been submitted',
@@ -70,7 +72,7 @@ app.post('/api/setPosition', async function (req, res) {
 
 app.get('/api/getHistorySushi/:id', async function (req, res) {
   try {
-    const contract = await fabricNetwork.connectNetwork('connection-producer.json', 'wallet/wallet-producer');
+    const contract = await fabricNetwork.connectNetwork('connection-cooperative.json', 'wallet/wallet-cooperative');
     const historySushi = JSON.parse((await contract.evaluateTransaction('getHistory', req.params.id.toString())).toString());
     const actualSushi = JSON.parse((await contract.evaluateTransaction('querySushi', req.params.id.toString())).toString());
     historySushi.unshift(actualSushi);

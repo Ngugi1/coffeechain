@@ -1,0 +1,49 @@
+{
+    "name": "supply-chain-producer",
+    "version": "1.0.0",
+    "client": {
+        "organization": "cooperative",
+        "connection": {
+            "timeout": {
+                "peer": {
+                    "endorser": "300"
+                }
+            }
+        }
+    },
+    "organizations": {
+        "cooperative": {
+            "mspid": "CooperativeMSP",
+            "peers": [
+                "peer0.cooperative.coffeechain.com"
+            ],
+            "certificateAuthorities": [
+                "ca.cooperative.coffeechain.com"
+            ]
+        }
+    },
+    "peers": {
+        "peer0.cooperative.coffeechain.com": {
+            "url": "grpcs://localhost:7051",
+            "tlsCACerts": {
+                "pem": "-----BEGIN CERTIFICATE-----\nMIIChTCCAiygAwIBAgIRAN9L5T0UaU3wQeSH2TyXfbUwCgYIKoZIzj0EAwIwgYwx\nCzAJBgNVBAYTAlVTMRMwEQYDVQQIEwpDYWxpZm9ybmlhMRYwFAYDVQQHEw1TYW4g\nRnJhbmNpc2NvMSQwIgYDVQQKExtjb29wZXJhdGl2ZS5jb2ZmZWVjaGFpbi5jb20x\nKjAoBgNVBAMTIXRsc2NhLmNvb3BlcmF0aXZlLmNvZmZlZWNoYWluLmNvbTAeFw0y\nMDA0MjYyMDI5MDBaFw0zMDA0MjQyMDI5MDBaMIGMMQswCQYDVQQGEwJVUzETMBEG\nA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNU2FuIEZyYW5jaXNjbzEkMCIGA1UE\nChMbY29vcGVyYXRpdmUuY29mZmVlY2hhaW4uY29tMSowKAYDVQQDEyF0bHNjYS5j\nb29wZXJhdGl2ZS5jb2ZmZWVjaGFpbi5jb20wWTATBgcqhkjOPQIBBggqhkjOPQMB\nBwNCAARsMDHAGdek4BcbPkbhAz9X6JCBwldY3Z1AHpYAaTPG8IALYLChKe4KvuCr\nnJ6hANqHWksjT9kM0JPX+XdbZrWxo20wazAOBgNVHQ8BAf8EBAMCAaYwHQYDVR0l\nBBYwFAYIKwYBBQUHAwIGCCsGAQUFBwMBMA8GA1UdEwEB/wQFMAMBAf8wKQYDVR0O\nBCIEIA9YNAizNOGKsfmkzXWrj+zw1TV/sqoSJQODOaaGydNzMAoGCCqGSM49BAMC\nA0cAMEQCIAnmjHEsHxPr6B6m0nLzfM7dZa+BWVwFs/1abZzSY5U5AiB7x1ydAO0n\n1mQP8yGAZuOLnIqBvgmPhR2UTMwX91kV6A==\n-----END CERTIFICATE-----\n"
+            },
+            "grpcOptions": {
+                "ssl-target-name-override": "peer0.cooperative.coffeechain.com",
+                "hostnameOverride": "peer0.cooperative.coffeechain.com"
+            }
+        }
+    },
+    "certificateAuthorities": {
+        "ca.cooperative.coffeechain.com": {
+            "url": "https://localhost:7054",
+            "caName": "ca-cooperative",
+            "tlsCACerts": {
+                "pem": "-----BEGIN CERTIFICATE-----\nMIICfzCCAiagAwIBAgIRAOjf//GTkV6p+dFwlCGON2kwCgYIKoZIzj0EAwIwgYkx\nCzAJBgNVBAYTAlVTMRMwEQYDVQQIEwpDYWxpZm9ybmlhMRYwFAYDVQQHEw1TYW4g\nRnJhbmNpc2NvMSQwIgYDVQQKExtjb29wZXJhdGl2ZS5jb2ZmZWVjaGFpbi5jb20x\nJzAlBgNVBAMTHmNhLmNvb3BlcmF0aXZlLmNvZmZlZWNoYWluLmNvbTAeFw0yMDA0\nMjYyMDI5MDBaFw0zMDA0MjQyMDI5MDBaMIGJMQswCQYDVQQGEwJVUzETMBEGA1UE\nCBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNU2FuIEZyYW5jaXNjbzEkMCIGA1UEChMb\nY29vcGVyYXRpdmUuY29mZmVlY2hhaW4uY29tMScwJQYDVQQDEx5jYS5jb29wZXJh\ndGl2ZS5jb2ZmZWVjaGFpbi5jb20wWTATBgcqhkjOPQIBBggqhkjOPQMBBwNCAAST\nq8ITlp7AAra18qdKcuK8QSaFK6t2O7d5nIZTEsfdK9Lx5WVsCeoec4Q2lq0CmIoq\nDU0JuZ4X6NLhI4Cuvpdso20wazAOBgNVHQ8BAf8EBAMCAaYwHQYDVR0lBBYwFAYI\nKwYBBQUHAwIGCCsGAQUFBwMBMA8GA1UdEwEB/wQFMAMBAf8wKQYDVR0OBCIEIG5h\nFG/OKz+GCSLWc26qIhhE887Rv7W6sZPDDd7xhdZXMAoGCCqGSM49BAMCA0cAMEQC\nIHIFNzCvfLmvgeNrrrOjMmbEOjKmCRC4f7y2rs/vBFraAiA0JZ0MoshbtZ6TI4v+\nksLM6dgxR5FXB8L3zR1twbk5jg==\n-----END CERTIFICATE-----\n"
+            },
+            "httpOptions": {
+                "verify": false
+            }
+        }
+    }
+}

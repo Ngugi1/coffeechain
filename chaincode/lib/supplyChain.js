@@ -9,6 +9,7 @@ class SypplyChain extends Contract {
     console.info('============= START : Add asset ===========');
     await ctx.stub.putState(JSON.parse(asset).id.toString(), Buffer.from(asset));
     console.info('============= END : Add asset ===========');
+    // console.log('+++++++++++++++++++++++++++++++++++++++++++++++++++')
     return ctx.stub.getTxID()
   }
 

@@ -6,90 +6,90 @@
 version: '2'
 
 volumes:
-  orderer.example.com:
-  peer0.producer.example.com:
-  peer0.manufacturer.example.com:
-  peer0.deliverer.example.com:
-  peer0.retailer.example.com:
-  caProducer:
-  caManufacturer:
-  caDeliverer:
-  caRetailer:
+  orderer.coffeechain.com:
+  peer0.cooperative.coffeechain.com:
+  peer0.transporter.coffeechain.com:
+  peer0.miller.coffeechain.com:
+  peer0.insurance.coffeechain.com:
+  caCooperative:
+  caTransporter:
+  caMiller:
+  caInsurance:
 
 networks:
   byfn:
 
 services:
 
-  orderer.example.com:
+  orderer.coffeechain.com:
     extends:
       file:   base/docker-compose-base.yaml
-      service: orderer.example.com
-    container_name: orderer.example.com
+      service: orderer.coffeechain.com
+    container_name: orderer.coffeechain.com
     networks:
       - byfn
 
-  peer0.producer.example.com:
-    container_name: peer0.producer.example.com
+  peer0.cooperative.coffeechain.com:
+    container_name: peer0.cooperative.coffeechain.com
     extends:
       file:  base/docker-compose-base.yaml
-      service: peer0.producer.example.com
+      service: peer0.cooperative.coffeechain.com
     networks:
       - byfn
 
-  peer0.manufacturer.example.com:
-    container_name: peer0.manufacturer.example.com
+  peer0.transporter.coffeechain.com:
+    container_name: peer0.transporter.coffeechain.com
     extends:
       file:  base/docker-compose-base.yaml
-      service: peer0.manufacturer.example.com
+      service: peer0.transporter.coffeechain.com
     networks:
       - byfn
       
-  peer0.deliverer.example.com:
-    container_name: peer0.deliverer.example.com
+  peer0.miller.coffeechain.com:
+    container_name: peer0.miller.coffeechain.com
     extends:
       file:  base/docker-compose-base.yaml
-      service: peer0.deliverer.example.com
+      service: peer0.miller.coffeechain.com
     networks:
       - byfn
       
-  peer0.retailer.example.com:
-    container_name: peer0.retailer.example.com
+  peer0.insurance.coffeechain.com:
+    container_name: peer0.insurance.coffeechain.com
     extends:
       file:  base/docker-compose-base.yaml
-      service: peer0.retailer.example.com
+      service: peer0.insurance.coffeechain.com
     networks:
       - byfn
       
-  caProducer:
-    container_name: caProducer
+  caCooperative:
+    container_name: caCooperative
     extends:
       file:  base/docker-compose-base.yaml
-      service: caProducer
+      service: caCooperative
     networks:
       - byfn
       
-  caManufacturer:
-    container_name: caManufacturer
+  caTransporter:
+    container_name: caTransporter
     extends:
       file:  base/docker-compose-base.yaml
-      service: caManufacturer
+      service: caTransporter
     networks:
       - byfn
       
-  caDeliverer:
-    container_name: caDeliverer
+  caMiller:
+    container_name: caMiller
     extends:
       file:  base/docker-compose-base.yaml
-      service: caDeliverer
+      service: caMiller
     networks:
       - byfn
       
-  caRetailer:
-    container_name: caRetailer
+  caInsurance:
+    container_name: caInsurance
     extends:
       file:  base/docker-compose-base.yaml
-      service: caRetailer
+      service: caInsurance
     networks:
       - byfn
       
@@ -105,13 +105,13 @@ services:
       #- FABRIC_LOGGING_SPEC=DEBUG
       - FABRIC_LOGGING_SPEC=INFO
       - CORE_PEER_ID=cli
-      - CORE_PEER_ADDRESS=peer0.producer.example.com:7051
-      - CORE_PEER_LOCALMSPID=ProducerMSP
+      - CORE_PEER_ADDRESS=peer0.cooperative.coffeechain.com:7051
+      - CORE_PEER_LOCALMSPID=CooperativeMSP
       - CORE_PEER_TLS_ENABLED=true
-      - CORE_PEER_TLS_CERT_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/producer.example.com/peers/peer0.producer.example.com/tls/server.crt
-      - CORE_PEER_TLS_KEY_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/producer.example.com/peers/peer0.producer.example.com/tls/server.key
-      - CORE_PEER_TLS_ROOTCERT_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/producer.example.com/peers/peer0.producer.example.com/tls/ca.crt
-      - CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/producer.example.com/users/Admin@producer.example.com/msp
+      - CORE_PEER_TLS_CERT_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/cooperative.coffeechain.com/peers/peer0.cooperative.coffeechain.com/tls/server.crt
+      - CORE_PEER_TLS_KEY_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/cooperative.coffeechain.com/peers/peer0.cooperative.coffeechain.com/tls/server.key
+      - CORE_PEER_TLS_ROOTCERT_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/cooperative.coffeechain.com/peers/peer0.cooperative.coffeechain.com/tls/ca.crt
+      - CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/cooperative.coffeechain.com/users/Admin@cooperative.coffeechain.com/msp
     working_dir: /opt/gopath/src/github.com/hyperledger/fabric/peer
     command: /bin/bash
     volumes:
@@ -121,14 +121,14 @@ services:
         - ./scripts:/opt/gopath/src/github.com/hyperledger/fabric/peer/scripts/
         - ./channel-artifacts:/opt/gopath/src/github.com/hyperledger/fabric/peer/channel-artifacts
     depends_on:
-      - orderer.example.com
-      - peer0.producer.example.com
-      - peer0.manufacturer.example.com
-      - peer0.deliverer.example.com
-      - peer0.retailer.example.com
-      - caProducer
-      - caManufacturer
-      - caDeliverer
-      - caRetailer
+      - orderer.coffeechain.com
+      - peer0.cooperative.coffeechain.com
+      - peer0.transporter.coffeechain.com
+      - peer0.miller.coffeechain.com
+      - peer0.insurance.coffeechain.com
+      - caCooperative
+      - caTransporter
+      - caMiller
+      - caInsurance
     networks:
       - byfn
