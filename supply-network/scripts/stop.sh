@@ -8,3 +8,5 @@ rm -r ./supply-network/crypto-config
 rm -r ./supply-network/channel-artifacts
 rm -r ./supply-network/base/docker-compose-base.yaml
 rm -r ./wallet
+rm -r ./connections/connection-*.json
+docker rmi $(docker images dev-peer0.* -q) -f

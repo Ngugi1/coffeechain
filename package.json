@@ -1,8 +1,8 @@
 {
-    "name": "hlf1.4-supply-chain",
+    "name": "coffeechain-supply-chain",
     "version": "1.0.0",
     "description": "A supply network example in Hyperledger Fabric 1.4",
-    "homepage": "https://github.com/ialberquilla/hlf1.4-supply-chain#readme",
+    "homepage": "https://github.com/Ngugi1/coffeechain",
     "engines": {
         "node": ">=8",
         "npm": ">=5"

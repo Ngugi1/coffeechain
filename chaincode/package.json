@@ -1,7 +1,7 @@
 {
-    "name": "Suoply-chain",
+    "name": "coffeechain",
     "version": "1.0.0",
-    "description": "Supply contract implemented in JavaScript",
+    "description": "Coffeechain contract implemented in JavaScript",
     "main": "index.js",
     "engines": {
         "node": ">=8",

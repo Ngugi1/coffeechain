@@ -4,7 +4,7 @@
 
 'use strict';
 
-const SupplyChain = require('./lib/supplyChain');
+const coffeechain = require('./lib/coffeechain');
 
-module.exports.supplyChain = SupplyChain;
-module.exports.contracts = [ SupplyChain ];
+module.exports.coffeechain = coffeechain;
+module.exports.contracts = [ coffeechain ];
