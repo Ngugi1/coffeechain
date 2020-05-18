@@ -11,7 +11,8 @@
         "lint": "eslint .",
         "pretest": "npm run lint",
         "start": "node src/server/server.js",
-        "test": "nyc mocha --recursive"
+        "test": "nyc mocha --recursive",
+        "build": "babel src/test.js -d dist"
     },
     "engineStrict": true,
     "author": "Iván Alberquilla",
@@ -24,6 +25,10 @@
         "fabric-network": "~1.4.0"
     },
     "devDependencies": {
+        "@babel/cli": "^7.8.4",
+        "@babel/core": "^7.9.6",
+        "@babel/plugin-proposal-decorators": "^7.8.3",
+        "babel-cli": "^6.26.0",
         "chai": "^4.2.0",
         "eslint": "^5.9.0",
         "mocha": "^5.2.0",

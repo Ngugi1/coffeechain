@@ -1,0 +1,3 @@
+{
+    "plugins": ["./bc-plugin/plugin/index.js", ["@babel/plugin-proposal-decorators", {"legacy": true}]]
+}

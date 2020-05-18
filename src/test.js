@@ -1,0 +1,6 @@
+@Asset
+class Person {
+    constructor() {
+        
+    }
+}
