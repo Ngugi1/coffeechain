@@ -44,6 +44,18 @@ module.exports = {
               }
             }
             return targetValue
+          },
+
+          set: function (target, property, value, receiver) {
+            if (Reflect.has(target, "update_count") == false) {
+              Reflect.defineProperty(target, "update_count", {value: 1, writable: true})
+            } else {
+              target.update_count += 1
+              if (target.update_count > 2) {
+                console.log("Update count exceeded!!!")
+                proxy.save()
+              }
+            }
           }
         })
         periodic_updates(proxy)
