@@ -7,9 +7,11 @@ class CoffeeChainSupplyChain extends Contract {
 
   async addCargo(ctx, cargo) {
     console.info('============= START : Add cargo ===========');
-    await ctx.stub.putState(JSON.parse(cargo).id.toString(), Buffer.from(cargo));
+    const id = ctx.stub.getTxID().toString()
+    await ctx.stub.putState(id, Buffer.from(cargo));
     console.info('============= END : Add cargo ===========');
-    return ctx.stub.getTxID()
+    ctx.stub.setEvent("cargoAdded", JSON.stringify({"txId": id, "data": cargo}))
+    return id
   }
 
   async queryCargo(ctx, cargoId) {

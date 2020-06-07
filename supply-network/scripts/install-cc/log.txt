@@ -1,0 +1,1 @@
+./upgrade.sh: line 6: peer: command not found
