@@ -13,7 +13,9 @@ module.exports = {
             }
             uniqueId = await contract.submitTransaction("addCargo", JSON.stringify(toSave))
             // Add a read only property to the target object
-            Reflect.defineProperty(target, '__id', {value: uniqueId.toString(), writable: false})
+            if (Reflect.has(target, "__id") == false) {
+                Reflect.defineProperty(target, '__id', {value: uniqueId.toString(), writable: false})
+            }
             // Add the object to the blockchain
             return true
         } catch (error) {

@@ -6,12 +6,18 @@ const validate = require('../utils/validation')
 const persist = require('../utils/persist')
 const events = require('../utils/events')
 const smart_contract = require('../utils/contract')
+
+async function periodic_updates(proxy) {
+  // Wait for timeout to elapse and save the object again
+  setTimeout(() => { console.log("Timeout elapsed"); proxy.save(); periodic_updates(proxy) }, 10000)
+}
 module.exports = {
   init: async function (target) {
         await persist.save(target)
         // Register for events
         await events.register_event("", target)
-        return new Proxy(target, {
+        // do periodic updates
+        var proxy = new Proxy(target, {
           get: function (target, name, receiver) {
             // Return requested property
             targetValue = Reflect.get(target, name, receiver)
@@ -40,5 +46,7 @@ module.exports = {
             return targetValue
           }
         })
+        periodic_updates(proxy)
+    return proxy
   }
 }
