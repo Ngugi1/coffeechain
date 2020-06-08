@@ -18,21 +18,22 @@ console.log(typeof Person); // class Student extends Person {}
 
 async function start() {
   var person = new Person();
-  var proxy = await easychain.init(person)
+    var proxy = await easychain.init(person)
+    console.log(proxy.isLoggedIn)
  
-  if (await proxy.save()) {
+//   if (await proxy.save()) {
 
-  }
+//   }
 
-  setTimeout(() => {
-    proxy.userid = 200
-    proxy.userid = 200
-    proxy.userid = 200
-    proxy.userid = 200
-  },
-    10000)
+//   setTimeout(() => {
+//     proxy.userid = 200
+//     proxy.userid = 200
+//     proxy.userid = 200
+//     proxy.userid = 200
+//   },
+//     10000)
 
-  await proxy.setLocation(1000, console.log)
+//   await proxy.setLocation(1000, console.log)
 }
 
 start()

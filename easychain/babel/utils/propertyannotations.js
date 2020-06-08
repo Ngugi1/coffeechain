@@ -27,9 +27,8 @@ module.exports = {
                     const dec_object = JSON.stringify({"type": "property", "name": property_name, "decorator": decorator_name})
                     // create ast nodes for string literals
                     literals.push(t.stringLiteral(dec_object))
-                    member.decorators = []
-
                 }
+                member.decorators = []
                 decorator_store.body.body[0].argument.elements = decorator_store.body.body[0].argument.elements.concat(literals)
                 console.log(decorator_store.body.body[0].argument.elements)
                 }
