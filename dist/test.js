@@ -16,7 +16,7 @@ class Person {
   }
 
   __decorators__() {
-    return ["{\"type\":\"class\",\"decorator\":\"Asset\",\"key\":\"name\",\"value\":\"addCargo\"}", "{\"type\":\"class\",\"decorator\":\"Lazy\",\"key\":\"writes\",\"value\":3}", "{\"type\":\"class\",\"decorator\":\"Provenance\"}", "{\"type\":\"method\",\"decorator\":\"contract\",\"contract\":\"setLocation\",\"method\":\"setLocation\"}", "{\"type\":\"property\",\"name\":\"id\",\"decorator\":\"key\",\"args\":[\"auto\"]}", "{\"type\":\"property\",\"name\":\"isLoggedIn\",\"decorator\":\"transient\",\"args\":[]}"];
+    return ["{\"type\":\"class\",\"decorator\":\"Asset\",\"key\":\"name\",\"value\":\"addCargo\"}", "{\"type\":\"class\",\"decorator\":\"Lazy\",\"key\":\"writes\",\"value\":3}", "{\"type\":\"class\",\"decorator\":\"Provenance\",\"key\":\"name\",\"value\":\"getHistory\"}", "{\"type\":\"method\",\"decorator\":\"contract\",\"contract\":\"setLocation\",\"method\":\"setLocation\"}", "{\"type\":\"property\",\"name\":\"id\",\"decorator\":\"key\",\"args\":[\"auto\"]}", "{\"type\":\"property\",\"name\":\"isLoggedIn\",\"decorator\":\"transient\",\"args\":[]}"];
   }
 
 }
@@ -26,6 +26,7 @@ console.log(typeof Person); // class Student extends Person {}
 async function start() {
   var person = new Person();
   var proxy = await easychain.init(person);
+  var history = await proxy.provenance(person.id);
   console.log(proxy.isLoggedIn); //   if (await proxy.save()) {
   //   }
 
@@ -35,7 +36,10 @@ async function start() {
     proxy.userid = 200;
     proxy.userid = 200;
   }, 10000); //   await proxy.setLocation(1000, console.log)
+  var history = await proxy.provenance(person.id);
+
 }
+
 
 start(); // person.save()
 // var proxy = new Proxy(person, {

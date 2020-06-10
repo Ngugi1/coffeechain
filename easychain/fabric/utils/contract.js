@@ -15,5 +15,20 @@ module.exports = {
             throw error
         }
         return results
+    },
+    evaluate_transaction: async function (name, args) {
+        var results = null
+        try {
+            contract = await connection.connect()
+            var string_args = []
+            for (arg of args) {
+                string_args.push(JSON.stringify(arg))
+            }
+            results = await contract.submitTransaction(name, ...string_args)
+            console.log("Contract evaluated" + results.toString())
+            return results
+        } catch (error) {
+            throw error
+        }
     }
 }

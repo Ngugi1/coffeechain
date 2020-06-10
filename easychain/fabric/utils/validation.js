@@ -10,6 +10,14 @@ module.exports = {
         return (is_function || is_undefined) && is_name_save
     },
 
+    is_provenance: function (target, targetValue, name) {
+        const class_annotations = annotations.getannotations(target).class
+        const provenance_annotation = class_annotations.filter((annotation) => {
+            return annotation.decorator.toLowerCase() == 'provenance'
+        })
+        return (targetValue == undefined && name == 'provenance' && provenance_annotation.length > 0)
+    },
+
     is_contract: function (target, targetValue, name) {
         // Find a matching contract
         const method_annotations = annotations.getannotations(target).method

@@ -1,40 +1,27 @@
 const easychain = require('easychain');
 @Asset(name="addCargo")
 @Lazy(writes = 3)
-@Provenance
+@Provenance(name="getHistory")
 class Person {
   constructor() {
     this.location = 100;
   }
-  @key("auto") id = 10
-  @transient isLoggedIn = 120
-
+  @key("auto") id
+  @transient isLoggedIn
   @contract(name="setLocation") setLocation(data) {
     console.log(data);
   }
-
 }
 
-console.log(typeof Person); // class Student extends Person {}
+// console.log(typeof Person); // class Student extends Person {}
 
 async function start() {
   var person = new Person();
-    var proxy = await easychain.init(person)
-    console.log(proxy.isLoggedIn)
- 
-//   if (await proxy.save()) {
-
-//   }
-
-  setTimeout(() => {
-    proxy.userid = 200
-    proxy.userid = 200
-    proxy.userid = 200
-    proxy.userid = 200
-  },
-    10000)
-
-//   await proxy.setLocation(1000, console.log)
+  var proxy = await easychain.init(person)
+  const saved = await proxy.save()
+  var history = await proxy.provenance(person.id)
+  // console.log(proxy.isLoggedIn)
+  await proxy.setLocation(1000, console.log)
 }
 
 start()

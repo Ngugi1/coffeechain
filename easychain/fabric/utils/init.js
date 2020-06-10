@@ -27,15 +27,25 @@ module.exports = {
             }
 
             if (validate.is_contract(target, targetValue, name)) {
-              // smart_contract.invoke_contract("", targetValue.)
               return async function (...args) {
-                // const callback = args[(args.length - 1)]
-                // args.pop()
                 const results = await smart_contract.invoke_contract(name, target.__id, args)
                 // callback(results)
                 console.log("Method contract invoked")
               }
             }
+
+
+              if (validate.is_provenance(target, targetValue, name)) {
+                // smart_contract.invoke_contract("", targetValue.)
+                return async function (...args) {
+                  const provenance_annotatiton = (annotations.getannotations(target).class).filter((a) => { return a.decorator.toLowerCase() == "provenance"})
+                  const results = await smart_contract.evaluate_transaction(provenance_annotatiton[0].value, args)
+                  // callback(results)
+                  console.log("Method contract invoked")
+              }
+              }
+            
+            
             if (typeof targetValue == 'function') {
               return function(...args) {
                 return targetValue.apply(target, args)
