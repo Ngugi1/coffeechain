@@ -4,6 +4,8 @@ const easychain = require('easychain');
 
 class Person {
   constructor() {
+    _defineProperty(this, "id", 10);
+
     _defineProperty(this, "isLoggedIn", 120);
 
     this.location = 100;
@@ -14,7 +16,7 @@ class Person {
   }
 
   __decorators__() {
-    return ["{\"type\":\"class\",\"name\":\"Asset\",\"args\":\"addCargo\"}", "{\"type\":\"class\",\"name\":\"Lazy\",\"args\":1000}", "{\"type\":\"method\",\"contract\":\"setLocation\",\"method\":\"setLocation\"}", "{\"type\":\"property\",\"name\":\"isLoggedIn\"}"];
+    return ["{\"type\":\"class\",\"decorator\":\"Asset\",\"key\":\"name\",\"value\":\"addCargo\"}", "{\"type\":\"class\",\"decorator\":\"Lazy\",\"key\":\"writes\",\"value\":3}", "{\"type\":\"class\",\"decorator\":\"Provenance\"}", "{\"type\":\"method\",\"decorator\":\"contract\",\"contract\":\"setLocation\",\"method\":\"setLocation\"}", "{\"type\":\"property\",\"name\":\"id\",\"decorator\":\"key\",\"args\":[\"auto\"]}", "{\"type\":\"property\",\"name\":\"isLoggedIn\",\"decorator\":\"transient\",\"args\":[]}"];
   }
 
 }
@@ -26,14 +28,13 @@ async function start() {
   var proxy = await easychain.init(person);
   console.log(proxy.isLoggedIn); //   if (await proxy.save()) {
   //   }
-  //   setTimeout(() => {
-  //     proxy.userid = 200
-  //     proxy.userid = 200
-  //     proxy.userid = 200
-  //     proxy.userid = 200
-  //   },
-  //     10000)
-  //   await proxy.setLocation(1000, console.log)
+
+  setTimeout(() => {
+    proxy.userid = 200;
+    proxy.userid = 200;
+    proxy.userid = 200;
+    proxy.userid = 200;
+  }, 10000); //   await proxy.setLocation(1000, console.log)
 }
 
 start(); // person.save()

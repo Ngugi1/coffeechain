@@ -3,19 +3,17 @@ const fs = require("fs")
 const path = require("path")
 const uuid = require('uuid')
 const validate = require('../utils/validation')
-const persist = require('../utils/persist')
 const events = require('../utils/events')
 const smart_contract = require('../utils/contract')
+const annotations = require('../utils/annotations')
+const persist = require('../utils/persist')
+const lazy = require('./lazy')
 
-async function periodic_updates(proxy) {
-  // Wait for timeout to elapse and save the object again
-  setTimeout(() => { console.log("Timeout elapsed"); proxy.save(); periodic_updates(proxy) }, 10000)
-}
+
 module.exports = {
   init: async function (target) {
-        await persist.save(target)
         // Register for events
-        await events.register_event("", target)
+        // await events.register_event("", target)
         // do periodic updates
         var proxy = new Proxy(target, {
           get: function (target, name, receiver) {
@@ -28,14 +26,14 @@ module.exports = {
               }
             }
 
-            if (validate.is_contract(targetValue, name)) {
+            if (validate.is_contract(target, targetValue, name)) {
               // smart_contract.invoke_contract("", targetValue.)
               return async function (...args) {
-                const callback = args[(args.length - 1)]
-                args.pop()
+                // const callback = args[(args.length - 1)]
+                // args.pop()
                 const results = await smart_contract.invoke_contract(name, target.__id, args)
-                callback(results)
-                console.log("contract invoked")
+                // callback(results)
+                console.log("Method contract invoked")
               }
             }
             if (typeof targetValue == 'function') {
@@ -47,18 +45,18 @@ module.exports = {
           },
 
           set: function (target, property, value, receiver) {
-            if (Reflect.has(target, "update_count") == false) {
-              Reflect.defineProperty(target, "update_count", {value: 1, writable: true})
-            } else {
-              target.update_count += 1
-              if (target.update_count > 2) {
-                console.log("Update count exceeded!!!")
-                proxy.save()
-              }
+            if (validate.is_lazy(target)) {
+              lazy.update_write_count(target, proxy)
             }
           }
         })
-        periodic_updates(proxy)
+        // Initialize
+        await persist.save(target)
+        // Register for lazy evaluation
+    if (validate.is_lazy(target)) {
+              const class_annotations = annotations.getannotations(target).class
+              lazy.register_periodic_updates(target, proxy, class_annotations)
+        }
     return proxy
   }
 }

@@ -22,15 +22,25 @@ module.exports = {
                 var literals = []
                 for (decorator of member.decorators) {
                     // Get name
-                    const decorator_name = decorator.expression.name
+                    console.log(decorator)
+                    var decorator_name = undefined
+                    var decorator_params = []
+                    if (t.isCallExpression(decorator.expression)) {
+                        decorator_name = decorator.expression.callee.name
+                        // console.log(decorator.expression.arguments)
+                        for (arg of decorator.expression.arguments) {
+                            decorator_params.push(arg.value)
+                        }
+                    } else if (t.isIdentifier(decorator.expression)) {
+                        decorator_name = decorator.expression.name
+                    }
                     const property_name = member.key.name
-                    const dec_object = JSON.stringify({"type": "property", "name": property_name, "decorator": decorator_name})
+                    const  dec_object = JSON.stringify({"type": "property", "name": property_name, "decorator": decorator_name, "args": decorator_params})
                     // create ast nodes for string literals
                     literals.push(t.stringLiteral(dec_object))
                 }
                 member.decorators = []
                 decorator_store.body.body[0].argument.elements = decorator_store.body.body[0].argument.elements.concat(literals)
-                console.log(decorator_store.body.body[0].argument.elements)
                 }
         }
     }

@@ -3,7 +3,6 @@ module.exports = {
     extract_decorators: function (path) {
         // A buffer for all annotations
         var literals = []
-        console.log("Extracting methods")
         class_body = path.node.body.body
         var decorator_store = undefined
         var decorated_methods = []
@@ -20,23 +19,21 @@ module.exports = {
                         decorator_store = member
                     }
                     if (Reflect.has(member, 'decorators')) {
-                        console.log("Found method with annotations")
                         decorated_methods.push(member)
                     }
                 }
                 var literals = []
                 for (method of decorated_methods) {
                     // const extracted_literals = collect_decorators.collect(method)
-                    console.log(method)
                     // Collect all decorators and build string literals
                     for (decorator of method.decorators) {
                         // Get name
-                        const name = decorator.expression.callee.name
+                        const decorator_name = decorator.expression.callee.name
                         const method_name = method.key.name
                         //  Get arguments
                         var args = ""
                         for (arg of decorator.expression.arguments) {
-                            args = args + JSON.stringify({"type": "method", "contract": arg.right.value,  "method":method_name})
+                            args = args + JSON.stringify({"type": "method", "decorator": decorator_name , "key": arg.left.value ,"contract": arg.right.value,  "method":method_name})
                         }
                         // create ast nodes for string literals
                         literals.push(t.stringLiteral(args))
@@ -44,7 +41,6 @@ module.exports = {
 
                     }
                     decorator_store.body.body[0].argument.elements = decorator_store.body.body[0].argument.elements.concat(literals)
-                    console.log(decorator_store.body.body[0].argument.elements)
 
                 }
             }

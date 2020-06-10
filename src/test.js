@@ -1,14 +1,15 @@
 const easychain = require('easychain');
 @Asset(name="addCargo")
-@Lazy(timeout=1000)
+@Lazy(writes = 3)
+@Provenance
 class Person {
   constructor() {
     this.location = 100;
   }
+  @key("auto") id = 10
+  @transient isLoggedIn = 120
 
-  @transient() isLoggedIn = 120
-
-  @contract(name="setLocation")setLocation(data) {
+  @contract(name="setLocation") setLocation(data) {
     console.log(data);
   }
 
@@ -25,13 +26,13 @@ async function start() {
 
 //   }
 
-//   setTimeout(() => {
-//     proxy.userid = 200
-//     proxy.userid = 200
-//     proxy.userid = 200
-//     proxy.userid = 200
-//   },
-//     10000)
+  setTimeout(() => {
+    proxy.userid = 200
+    proxy.userid = 200
+    proxy.userid = 200
+    proxy.userid = 200
+  },
+    10000)
 
 //   await proxy.setLocation(1000, console.log)
 }

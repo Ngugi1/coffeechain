@@ -116,11 +116,11 @@ services:
       - FABRIC_CA_SERVER_CA_NAME=ca-cooperative
       - FABRIC_CA_SERVER_TLS_ENABLED=true
       - FABRIC_CA_SERVER_TLS_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.cooperative.coffeechain.com-cert.pem
-      - FABRIC_CA_SERVER_TLS_KEYFILE=/etc/hyperledger/fabric-ca-server-config/07a3b76c115b26d53b64649720af0ce54e463f4d3e4f499f124b849893582ef3_sk
+      - FABRIC_CA_SERVER_TLS_KEYFILE=/etc/hyperledger/fabric-ca-server-config/f10e9707763f82a11a7b4ee9ab596cfb72f4ae027642ef8e99ab8d2ed35ff397_sk
       - FABRIC_CA_SERVER_PORT=7054
     ports:
       - "7054:7054"
-    command: sh -c 'fabric-ca-server start --ca.certfile /etc/hyperledger/fabric-ca-server-config/ca.cooperative.coffeechain.com-cert.pem --ca.keyfile /etc/hyperledger/fabric-ca-server-config/07a3b76c115b26d53b64649720af0ce54e463f4d3e4f499f124b849893582ef3_sk -b admin:adminpw -d'
+    command: sh -c 'fabric-ca-server start --ca.certfile /etc/hyperledger/fabric-ca-server-config/ca.cooperative.coffeechain.com-cert.pem --ca.keyfile /etc/hyperledger/fabric-ca-server-config/f10e9707763f82a11a7b4ee9ab596cfb72f4ae027642ef8e99ab8d2ed35ff397_sk -b admin:adminpw -d'
     volumes:
       - ../crypto-config/peerOrganizations/cooperative.coffeechain.com/ca/:/etc/hyperledger/fabric-ca-server-config
       
@@ -131,11 +131,11 @@ services:
       - FABRIC_CA_SERVER_CA_NAME=ca-transporter
       - FABRIC_CA_SERVER_TLS_ENABLED=true
       - FABRIC_CA_SERVER_TLS_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.transporter.coffeechain.com-cert.pem
-      - FABRIC_CA_SERVER_TLS_KEYFILE=/etc/hyperledger/fabric-ca-server-config/7909c3649db627cbc57ae954259446e8af88b899ddef4cf898df4a408422c0cf_sk
+      - FABRIC_CA_SERVER_TLS_KEYFILE=/etc/hyperledger/fabric-ca-server-config/9add69e2aa3a143ce11e5ae084f67c4f07ea7a0306f41cdfed74a09a9daa2a33_sk
       - FABRIC_CA_SERVER_PORT=8054
     ports:
       - "8054:8054"
-    command: sh -c 'fabric-ca-server start --ca.certfile /etc/hyperledger/fabric-ca-server-config/ca.transporter.coffeechain.com-cert.pem --ca.keyfile /etc/hyperledger/fabric-ca-server-config/7909c3649db627cbc57ae954259446e8af88b899ddef4cf898df4a408422c0cf_sk -b admin:adminpw -d'
+    command: sh -c 'fabric-ca-server start --ca.certfile /etc/hyperledger/fabric-ca-server-config/ca.transporter.coffeechain.com-cert.pem --ca.keyfile /etc/hyperledger/fabric-ca-server-config/9add69e2aa3a143ce11e5ae084f67c4f07ea7a0306f41cdfed74a09a9daa2a33_sk -b admin:adminpw -d'
     volumes:
       - ../crypto-config/peerOrganizations/transporter.coffeechain.com/ca/:/etc/hyperledger/fabric-ca-server-config
       
@@ -146,11 +146,11 @@ services:
       - FABRIC_CA_SERVER_CA_NAME=ca-miller
       - FABRIC_CA_SERVER_TLS_ENABLED=true
       - FABRIC_CA_SERVER_TLS_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.miller.coffeechain.com-cert.pem
-      - FABRIC_CA_SERVER_TLS_KEYFILE=/etc/hyperledger/fabric-ca-server-config/34b4ac2b6c67f324b9ec49d49414b9e7dfc74982eab4c81f780ba4e3a9202a03_sk
+      - FABRIC_CA_SERVER_TLS_KEYFILE=/etc/hyperledger/fabric-ca-server-config/e956a5b7e8bf4c078db5e155fcc168b323e225b656f005484ef5948052c8ef11_sk
       - FABRIC_CA_SERVER_PORT=9054
     ports:
       - "9054:9054"
-    command: sh -c 'fabric-ca-server start --ca.certfile /etc/hyperledger/fabric-ca-server-config/ca.miller.coffeechain.com-cert.pem --ca.keyfile /etc/hyperledger/fabric-ca-server-config/34b4ac2b6c67f324b9ec49d49414b9e7dfc74982eab4c81f780ba4e3a9202a03_sk -b admin:adminpw -d'
+    command: sh -c 'fabric-ca-server start --ca.certfile /etc/hyperledger/fabric-ca-server-config/ca.miller.coffeechain.com-cert.pem --ca.keyfile /etc/hyperledger/fabric-ca-server-config/e956a5b7e8bf4c078db5e155fcc168b323e225b656f005484ef5948052c8ef11_sk -b admin:adminpw -d'
     volumes:
       - ../crypto-config/peerOrganizations/miller.coffeechain.com/ca/:/etc/hyperledger/fabric-ca-server-config
       
@@ -162,10 +162,10 @@ services:
       - FABRIC_CA_SERVER_CA_NAME=ca-insurance
       - FABRIC_CA_SERVER_TLS_ENABLED=true
       - FABRIC_CA_SERVER_TLS_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.insurance.coffeechain.com-cert.pem
-      - FABRIC_CA_SERVER_TLS_KEYFILE=/etc/hyperledger/fabric-ca-server-config/36c356c7317eca178edc5a650f728507871f4dddf7cb061dd8c2c60fb41579a9_sk
+      - FABRIC_CA_SERVER_TLS_KEYFILE=/etc/hyperledger/fabric-ca-server-config/fede18f114cf88df2e2fae2be7c4051df2897f201253bec918dfdc54bba2d8a2_sk
       - FABRIC_CA_SERVER_PORT=10054
     ports:
       - "10054:10054"
-    command: sh -c 'fabric-ca-server start --ca.certfile /etc/hyperledger/fabric-ca-server-config/ca.insurance.coffeechain.com-cert.pem --ca.keyfile /etc/hyperledger/fabric-ca-server-config/36c356c7317eca178edc5a650f728507871f4dddf7cb061dd8c2c60fb41579a9_sk -b admin:adminpw -d'
+    command: sh -c 'fabric-ca-server start --ca.certfile /etc/hyperledger/fabric-ca-server-config/ca.insurance.coffeechain.com-cert.pem --ca.keyfile /etc/hyperledger/fabric-ca-server-config/fede18f114cf88df2e2fae2be7c4051df2897f201253bec918dfdc54bba2d8a2_sk -b admin:adminpw -d'
     volumes:
       - ../crypto-config/peerOrganizations/insurance.coffeechain.com/ca/:/etc/hyperledger/fabric-ca-server-config
