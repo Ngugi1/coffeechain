@@ -1,14 +1,14 @@
 const connection = require('../utils/connection')
 const annotation_helper = require('./annotations')
 const validation = require('./validation')
-const uuid = require('uuid')
+const { v4: uuidv4 } = require('uuid');
 
 module.exports = {
-    save: async function (target) {
+    save: async function(target) {
         try {
             var toSave = {}
             var response = {}
-            // Validate availability of correct annotations
+                // Validate availability of correct annotations
             const class_annotations = (annotation_helper.getannotations(target)).class
             if (validation.is_asset(annotation_helper.getannotations(target).class) == false) {
                 throw "Asset annotation missing"
@@ -25,10 +25,10 @@ module.exports = {
             const saving_contract = annotations[0].value
             if (saving_contract != undefined) {
                 contract = await connection.connect()
-                // Fetch transient props
+                    // Fetch transient props
                 var transient_props = []
                 for (prop of property_annotations) {
-                    if (prop.decorator.toLowerCase() == "transient") {
+                    if (prop.decorator.toLowerCase() === "transient") {
                         transient_props.push(prop.name)
                     }
                 }
@@ -36,17 +36,20 @@ module.exports = {
                 for (property of Object.getOwnPropertyNames(target)) {
                     if (typeof target[property] != 'function' &&
                         transient_props.includes(property) == false) {
-                        Reflect.defineProperty(toSave, property, { value: target[property], writable:true})
+                        toSave[property] = target[property]
                     }
                 }
-                console.log(toSave)
-                if (key_annotation.args) {
-                    if (key_annotation.args[0] == 'auto') {
-                        Reflect.set(toSave, key_annotation.name, {value: uuid.v3(), writable: true})
+
+                if (key_annotation != undefined) {
+                    if (key_annotation[0].args == 'auto') {
+                        toSave[key_annotation[0].name] = uuidv4();
                     }
+                } else {
+                    throw "Provide the key property"
                 }
+                console.log(JSON.stringify(toSave))
                 response = await contract.submitTransaction("addCargo", JSON.stringify(toSave))
-                // Add the object to the blockchain
+                    // Add the object to the blockchain
                 console.log(response.toString())
                 return response
             } else {

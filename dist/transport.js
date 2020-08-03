@@ -3,34 +3,39 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 const easychain = require('easychain');
 
 class Cargo {
-  constructor() {
+  constructor(coopId, weight, humidity, location) {
     _defineProperty(this, "id", void 0);
 
-    _defineProperty(this, "isLoggedIn", void 0);
+    _defineProperty(this, "isloggedin", void 0);
 
-    this.location = [12.5, 13.6];
+    // Establish connection
+    this.coopId = coopId;
+    this.weight = weight;
+    this.humidity = humidity;
+    this.location = location; // Control flow variable
+
+    this.isloggedin = false;
+    this.status = "Dispatched";
   }
 
-  setLocation(data) {
-    console.log(data);
+  setLocation(newLocation) {// Make local effects
   }
 
   __decorators__() {
-    return ["{\"type\":\"class\",\"decorator\":\"Asset\",\"key\":\"name\",\"value\":\"addCargo\"}", "{\"type\":\"class\",\"decorator\":\"Lazy\",\"key\":\"writes\",\"value\":3}", "{\"type\":\"class\",\"decorator\":\"Provenance\",\"key\":\"name\",\"value\":\"getHistory\"}", "{\"type\":\"method\",\"decorator\":\"contract\",\"contract\":\"setLocation\",\"method\":\"setLocation\"}", "{\"type\":\"property\",\"name\":\"id\",\"decorator\":\"key\",\"args\":[\"auto\"]}", "{\"type\":\"property\",\"name\":\"isLoggedIn\",\"decorator\":\"transient\",\"args\":[]}"];
+    return ["{\"type\":\"class\",\"decorator\":\"Asset\",\"key\":\"name\",\"value\":\"addCargo\"}", "{\"type\":\"class\",\"decorator\":\"Lazy\",\"key\":\"timeout\",\"value\":10}", "{\"type\":\"class\",\"decorator\":\"Provenance\",\"key\":\"name\",\"value\":\"getHistory\"}", "{\"type\":\"method\",\"decorator\":\"contract\",\"contract\":\"setLocation\",\"method\":\"setLocation\"}", "{\"type\":\"property\",\"name\":\"id\",\"decorator\":\"key\",\"args\":[\"auto\"]}", "{\"type\":\"property\",\"name\":\"isloggedin\",\"decorator\":\"transient\",\"args\":[]}"];
   }
 
 }
 
-async function start() {
-  var cargo = new Cargo();
+async function test() {
+  var cargo = new Cargo(10, 15, 20, 30);
   var proxy = await easychain.init(cargo);
   const saved = await proxy.save();
-  var history = await proxy.provenance(cargo.id); // console.log(proxy.isLoggedIn)
-
-  await proxy.setLocation(1000, console.log);
+  var history = await proxy.provenance(cargo.id);
+  await proxy.setLocation(newLoc);
 }
 
-start(); // person.save()
+test(); // person.save()
 // var proxy = new Proxy(person, {
 //   construct: async function (target, a, b) {
 //     Reflect.defineProperty(target, "save", easychain.connect);

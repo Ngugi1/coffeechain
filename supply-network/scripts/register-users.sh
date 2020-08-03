@@ -10,6 +10,6 @@ node src/registerUser.js miller
 node src/registerUser.js insurance
 
 echo "***********************************"
-echo "       Starting API server         "
+echo "       You are ready!!         "
 echo "***********************************"
-npm start
+# npm start

@@ -1,6 +1,6 @@
 {
-    "wallet_path": "./wallet/wallet-cooperative",
-    "ccp_profile_path": "./connections/connection-cooperative.json",
+    "wallet_path": "wallet/wallet-cooperative",
+    "ccp_profile_path": "connections/connection-cooperative.json",
     "identity": "user1",
     "contract": "supcc",
     "channel": "mychannel",

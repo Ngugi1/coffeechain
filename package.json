@@ -12,7 +12,7 @@
         "pretest": "npm run lint",
         "start": "node src/server/server.js",
         "test": "nyc mocha --recursive",
-        "build": "npm update easychain && babel src/test.js -d dist"
+        "build": "npm update easychain && babel src/user.js -d dist"
     },
     "engineStrict": true,
     "author": "Iván Alberquilla",
@@ -22,7 +22,8 @@
         "express": "^4.17.1",
         "fabric-ca-client": "~1.4.0",
         "fabric-client": "^1.4.4",
-        "fabric-network": "~1.4.0"
+        "fabric-network": "~1.4.0",
+        "uuid": "^8.3.0"
     },
     "devDependencies": {
         "@babel/cli": "^7.8.4",
