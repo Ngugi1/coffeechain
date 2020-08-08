@@ -3,7 +3,6 @@ const easychain = require('easychain');
 @Provenance(name = "getHistory")
 class Product {
     constructor(productCode) {
-        // Establish connection
         this.productcode = productCode
     }
 
@@ -12,11 +11,18 @@ class Product {
 
 async function test() {
     // Initialize a local coffee object
-    let product = new Product(1)
+    let product = new Product(12)
     let product_proxy = await easychain.init(product)
-    await product_proxy.getHistory((history) => {
+    product_proxy.getHistory((history) => {
         // Consume history
     })
 }
 
 test()
+
+
+// Connectivity 1
+// Contract Mangement 4
+// Event Management  0
+// Business Logic  11
+// Total 16

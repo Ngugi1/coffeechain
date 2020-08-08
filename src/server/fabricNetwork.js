@@ -1,4 +1,4 @@
-// Setting for Hyperledger Fabric
+// Connectivity = 28
 const { FileSystemWallet, Gateway } = require('fabric-network');
 const path = require('path');
 const fs = require('fs')
@@ -10,7 +10,6 @@ async function connectNetwork() {
     const config = JSON.parse(fs.readFileSync(config_path))
     const walletPath = path.join(process.cwd(), config.wallet_path);
     const wallet = new FileSystemWallet(walletPath);
-    console.log(`Wallet path: ${walletPath}`);
     const ccpPath = path.join(process.cwd(), config.ccp_profile_path);
     // Check to see if we've already enrolled the user.
     const userExists = await wallet.exists(config.identity);

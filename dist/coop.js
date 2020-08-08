@@ -3,49 +3,54 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 const easychain = require('easychain');
 
 class Coffee {
-  constructor(transporterId, grade, weight, humidity, location) {
-    _defineProperty(this, "id", void 0);
+    constructor(transporterId, grade, weight, humidity, location) {
+        _defineProperty(this, "id", void 0);
 
-    this.transporterId = transporterId;
-    this.grade = grade;
-    this.weight = weight;
-    this.humidity = humidity;
-    this.location = location; // Control flow variable
+        _defineProperty(this, "isloggedin", void 0);
 
-    this.isloggedin = false;
-  }
+        this.transporterId = transporterId;
+        this.grade = grade;
+        this.weight = weight;
+        this.humidity = humidity;
+        this.location = location; // Control flow variable
 
-  setGradeContract(newGrade) {}
+        this.isloggedin = false;
+    }
 
-  locationChanged(newLocData) {// Make local effects
-  }
+    setGradeContract(id, newGrade) {}
 
-  __decorators__() {
-    return ["{\"type\":\"class\",\"decorator\":\"Asset\",\"key\":\"name\",\"value\":\"addCargo\"}", "{\"type\":\"class\",\"decorator\":\"Provenance\",\"key\":\"name\",\"value\":\"getHistory\"}", "{\"type\":\"method\",\"decorator\":\"contract\",\"contract\":\"setGrade\",\"method\":\"setGradeContract\"}", "{\"type\":\"method\",\"decorator\":\"event\",\"contract\":\"cargoLocationChanged\",\"method\":\"locationChanged\"}", "{\"type\":\"property\",\"name\":\"id\",\"decorator\":\"key\",\"args\":[\"auto\"]}"];
-  }
+    locationChanged(newLocData) { // Make local effects
+    }
+
+    __decorators__() {
+        return ["{\"type\":\"class\",\"decorator\":\"Asset\",\"key\":\"name\",\"value\":\"addCargo\"}", "{\"type\":\"class\",\"decorator\":\"Provenance\",\"key\":\"name\",\"value\":\"getHistory\"}", "{\"type\":\"method\",\"decorator\":\"contract\",\"contract\":\"setGrade\",\"method\":\"setGradeContract\"}", "{\"type\":\"method\",\"decorator\":\"event\",\"contract\":\"locationChanged\",\"method\":\"locationChanged\"}", "{\"type\":\"property\",\"name\":\"id\",\"decorator\":\"key\",\"args\":[\"auto\"]}", "{\"type\":\"property\",\"name\":\"isloggedin\",\"decorator\":\"transient\",\"args\":[]}"];
+    }
 
 }
 
 async function test() {
-  // Initialize a local coffee object
-  let coffee = new Coffee("A", 12, 15, 10, {
-    lat: 10,
-    long: 20
-  });
-  coffee_proxy = await easychain.init(coffee); // propose to persist the object on the blockchain
-
-  if (coffee.isloggedin) {
-    const saved = await coffee.save();
-    await coffee_proxy.setGradeContract('A-');
-    await coffee.provenance().then(data => {// Consume history
+    // Initialize a local coffee object
+    let coffee = new Coffee(12, "A", 12, 1.5, {
+        lat: 10,
+        long: 20
     });
-  }
+    coffee_proxy = await easychain.init(coffee); // propose to persist the object on the blockchain
+
+    if (coffee.isloggedin) {
+        // Profile
+        coffee_proxy.save();
+        // Profile
+        await coffee_proxy.setGradeContract({
+            grade: 'A-'
+        });
+        // Profile
+        await coffee_proxy.provenance().then(data => { // Consume history
+        });
+    }
 }
 
-test(); // Connectivity //
-// Contract Mangement ////
-// Event Management /
-// Initialization //
-//  Key Generation /
-// Business Logic
-// Miscleneaous
+test(); // Connectivity 1
+// Contract Mangement 7
+// Event Management  2 //
+// Business Logic + Glue Code 19 //
+//29

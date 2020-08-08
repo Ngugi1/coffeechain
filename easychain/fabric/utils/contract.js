@@ -1,6 +1,6 @@
 const connection = require('../utils/connection')
 module.exports = {
-    invoke_contract: async function (contract_name, id, args) {
+    invoke_contract: async function(contract_name, id, args) {
         var results = null
         try {
             contract = await connection.connect()
@@ -16,7 +16,7 @@ module.exports = {
         }
         return results
     },
-    evaluate_transaction: async function (name, args) {
+    evaluate_transaction: async function(name, args) {
         var results = null
         try {
             contract = await connection.connect()

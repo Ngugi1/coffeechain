@@ -47,8 +47,9 @@ module.exports = {
                 } else {
                     throw "Provide the key property"
                 }
-                console.log(JSON.stringify(toSave))
-                response = await contract.submitTransaction("addCargo", JSON.stringify(toSave))
+                const data = JSON.stringify(toSave) + ""
+                console.log(typeof(data))
+                response = await contract.submitTransaction("addCargo", data)
                     // Add the object to the blockchain
                 console.log(response.toString())
                 return response
@@ -56,7 +57,7 @@ module.exports = {
                 throw "No saving contract found, make sure it is in your Asset(name=contract_name)"
             }
         } catch (error) {
-            throw error
+            return error
         }
     }
 }

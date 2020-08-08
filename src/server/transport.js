@@ -1,10 +1,8 @@
-const fabricNetwork = require('./fabricNetwork')
 const { BCBacked } = require('./blockchainbacked')
     // Utility functions for our scenario
     // Modeling a scenario
 class Cargo extends BCBacked {
     constructor(coopId, grade, weight, humidity, location) {
-        // Establish connection
         super()
         this.id;
         this.coopId = coopId
@@ -12,7 +10,6 @@ class Cargo extends BCBacked {
         this.weight = weight
         this.humidity = humidity
         this.location = location
-            // Control flow variable
         this.isloggedin = false
         this.contract = null;
         this.status = "Transit"
@@ -65,3 +62,10 @@ async function test() {
 }
 
 test()
+
+////Total 46
+// Connectivity 35
+// Contract Mangement 41
+// Event Management  9 //
+// Business Logic + Glue Code 20 //
+// SUM: 105

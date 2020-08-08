@@ -12,4 +12,4 @@ node src/registerUser.js insurance
 echo "***********************************"
 echo "       You are ready!!         "
 echo "***********************************"
-# npm start
+npm start

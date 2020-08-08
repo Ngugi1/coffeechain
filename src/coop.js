@@ -12,21 +12,22 @@ class Coffee {
         this.isloggedin = false
     }
     @key("auto") id
-    @contract(name = "setGrade") setGradeContract(newGrade) {}
-    @event(name = "cargoLocationChanged") locationChanged(newLocData) {
+    @transient isloggedin
+    @contract(name = "setGrade") setGradeContract(id, newGrade) {}
+    @event(name = "locationChanged") locationChanged(newLocData) {
         // Make local effects
     }
 }
 
 async function test() {
     // Initialize a local coffee object
-    let coffee = new Coffee("A", 12, 15, 10, { lat: 10, long: 20 })
+    let coffee = new Coffee(12, "A", 12, 1.5, { lat: 10, long: 20 })
     coffee_proxy = await easychain.init(coffee)
         // propose to persist the object on the blockchain
-    if (coffee.isloggedin) {
-        const saved = await coffee.save()
-        await coffee_proxy.setGradeContract('A-')
-        await coffee.provenance().then((data) => {
+    if (coffee_proxy.isloggedin) {
+        coffee_proxy.save()
+        await coffee_proxy.setGradeContract({ grade: 'A-' })
+        await coffee_proxy.provenance().then((data) => {
             // Consume history
         })
     }
@@ -34,10 +35,8 @@ async function test() {
 
 test()
 
-// Connectivity //
-// Contract Mangement ////
-// Event Management /
-// Initialization //
-//  Key Generation /
-// Business Logic
-// Miscleneaous
+// Connectivity 1
+// Contract Mangement 7
+// Event Management  2 //
+// Business Logic + Glue Code 19 //
+//29

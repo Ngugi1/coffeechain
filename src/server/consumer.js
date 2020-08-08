@@ -1,10 +1,8 @@
-const fabricNetwork = require('./fabricNetwork')
 const { BCBacked } = require('./blockchainbacked')
 
 class Product extends BCBacked {
     constructor(id, productCode) {
         super()
-            // Establish connection
         this.id = id;
         this.productcode = productCode
     }
@@ -12,9 +10,16 @@ class Product extends BCBacked {
 
 async function test() {
     // Initialize a local coffee object
-    let product = new Product(1)
+    let product = new Product(12, 1)
     await product.session()
-    await product.getHistory('getHistory', JSON.stringify({ id: 1 }))
+    await product.getHistory('getHistory', { id: 1 })
 }
 
 test()
+
+
+// Connectivity 33
+// Contract Mangement 16
+// Event Management  0
+// Business Logic  15
+// Total 14

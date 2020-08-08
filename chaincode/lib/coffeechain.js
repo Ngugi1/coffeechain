@@ -3,19 +3,19 @@
 const { Contract } = require('fabric-contract-api');
 
 class CoffeeChainSupplyChain extends Contract {
-    async addCargo(ctx, cargo) {
-        console.log(cargo)
-        cargo = JSON.parse(cargo)
-        console.info('============= START : Add cargo ===========');
-        if (cargo.id === null) {
-            cargo.id = ctx.stub.getTxID().toString()
-        }
+    async addCargo(ctx, data) {
+        console.log(data)
+        const cargo = JSON.parse(data)
+        console.log(data)
+
+        // console.info('============= START : Add cargo ===========');
         const result =
-            await ctx.stub.putState(cargo.id, Buffer.from(cargo));
+            await ctx.stub.putState(cargo.id, Buffer.from(data));
         console.info('============= END : Add cargo ===========');
-        console.info('Result -- ' + result);
-        ctx.stub.setEvent("cargoAdded", JSON.stringify({ "txId": ctx.stub.getTxID().toString(), "data": cargo }))
-        return result;
+        // console.info('Result -- ' + result);
+        // ctx.stub.setEvent("cargoAdded", JSON.stringify({ "txId": ctx.stub.getTxID().toString(), "data": cargo }))
+        // return result;
+        return 'OK';
     }
 
     async queryCargo(ctx, data) {

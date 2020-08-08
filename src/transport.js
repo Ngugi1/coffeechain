@@ -1,6 +1,6 @@
 const easychain = require('easychain');
 @Asset(name = "addCargo")
-@Lazy(timeout = 10)
+    // @Lazy(timeout = 10)
 @Provenance(name = "getHistory")
 class Cargo {
     constructor(coopId, weight, humidity, location) {
@@ -16,9 +16,7 @@ class Cargo {
 
     @key("auto") id
     @transient isloggedin
-    @contract(name = "setLocation") setLocation(newLocation) {
-        // Make local effects
-    }
+    @contract(name = "setLocation") setLocation(newLocation) {}
 }
 
 async function test() {
@@ -30,6 +28,17 @@ async function test() {
 }
 
 test()
+
+
+// Connectivity 1
+// Contract Mangement 7
+// Event Management  0
+// Business Logic 15
+// Total = 23
+
+
+
+
 
 // person.save()
 
